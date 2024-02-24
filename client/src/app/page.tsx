@@ -1,11 +1,11 @@
 import { Banner } from "@/components/Banner";
-import { Hello } from "@/components/test";
+import { NavBar } from "@/components/NavBar";
 
 export default function Home() {
   return (
     <>
       <Banner />
-      <Hello />
+      <NavBar />
     </>
   );
 }

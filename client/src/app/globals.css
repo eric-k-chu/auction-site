@@ -5,4 +5,9 @@
 :root {
   background-color: white;
   color: black;
+  overflow-x: hidden;
+}
+
+* {
+  min-width: 0;
 }
