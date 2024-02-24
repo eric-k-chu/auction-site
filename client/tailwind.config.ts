@@ -13,6 +13,13 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        "randy-turquoise": "#4C718C",
+        "randy-orange": "#FFA600",
+        "randy-navy": "#222B47",
+        "randy-grey": "#BFBFBF",
+        "randy-eggshell": "#F3F0E6",
+      },
     },
   },
   plugins: [],
