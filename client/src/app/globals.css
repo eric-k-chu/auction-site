@@ -11,3 +11,13 @@
 * {
   min-width: 0;
 }
+
+th,
+td {
+  padding: 8px 10px;
+  text-align: left;
+}
+
+tbody > tr {
+  @apply border-b-randy-eggshell border-b;
+}
