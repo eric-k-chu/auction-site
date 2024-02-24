@@ -3,8 +3,8 @@ import Image from "next/image";
 export function NavBar() {
   return (
     <nav className="bg-randy-navy">
-      <div className="container mx-auto flex items-center py-3.5">
-        <div className="basis-1/3">
+      <div className="container mx-auto flex items-center p-4">
+        <div className="basis-1/2">
           <Image
             src="logo.svg"
             alt="Randy Mark Auctioneer"
@@ -13,7 +13,7 @@ export function NavBar() {
             className="h-12 w-auto sm:h-16 md:h-20"
           />
         </div>
-        <section className="flex basis-2/3 items-center justify-evenly font-bold text-white">
+        <section className="flex basis-1/2 items-center justify-evenly font-bold text-white">
           <a rel="noopener" href="#auction" className="hover:underline">
             Auctions
           </a>
