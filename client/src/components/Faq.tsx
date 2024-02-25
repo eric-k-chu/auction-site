@@ -43,7 +43,7 @@ export function Faq() {
   }
 
   return (
-    <section className="bg-randy-eggshell py-6">
+    <section className="bg-randy-eggshell pb-20 pt-10">
       <div className="mx-auto max-w-7xl space-y-6 p-4">
         <h2 className="text-4xl font-bold">FAQ</h2>
         {faqs.map((n, i) => (
