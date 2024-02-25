@@ -16,3 +16,8 @@ export interface Lot {
 export interface Lots {
   lots: Lot[];
 }
+
+export interface Faq {
+  title: string;
+  description: string;
+}
