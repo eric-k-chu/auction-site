@@ -6,7 +6,7 @@ export async function Lots() {
   return (
     <>
       {lots.map((n) => (
-        <section key={n.location} className="container mx-auto space-y-4 p-4">
+        <section key={n.location} className="mx-auto max-w-7xl space-y-4 p-4">
           <h2 className="text-2xl font-bold">{n.location}</h2>
           <LotInfo lot={n} />
         </section>

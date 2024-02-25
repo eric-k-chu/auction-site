@@ -22,8 +22,9 @@ export function LotInfo({ lot }: Props) {
         {["vehicles", "dates", "contact"].map((n) => (
           <button
             type="button"
+            key={n}
             onClick={() => setTab(n as Tab)}
-            className={`border-b-4 px-2 text-lg capitalize transition-colors duration-300 ease-in-out ${n === tab ? "border-b-randy-orange font-semibold text-black" : "border-b-randy-turquoise text-randy-turquoise font-normal"}`}
+            className={`border-b-4 px-2 text-lg capitalize transition-colors duration-300 ease-in-out ${n === tab ? "border-b-randy-orange font-semibold text-black" : "border-b-randy-turquoise font-normal text-randy-turquoise"}`}
           >
             {n}
           </button>
@@ -36,7 +37,7 @@ export function LotInfo({ lot }: Props) {
           <VehicleTable vehicles={vehicles} />
         </div>
         <button
-          className="bg-randy-eggshell flex w-full items-center justify-center py-1.5"
+          className="flex w-full items-center justify-center bg-randy-eggshell py-1.5"
           type="button"
           aria-label="click to expand"
           onClick={() => setIsExpanded(!isExpanded)}
