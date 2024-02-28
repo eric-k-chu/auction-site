@@ -49,7 +49,7 @@ export function Faq() {
         {faqs.map((n, i) => (
           <div key={i} className="rounded-xl bg-white shadow-md">
             <button
-              className="flex items-center gap-10 p-10"
+              className="flex w-full items-center gap-10 p-10"
               type="button"
               onClick={() => setFaq(n)}
             >
