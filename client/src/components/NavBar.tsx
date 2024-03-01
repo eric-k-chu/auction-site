@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export function NavBar() {
   return (
@@ -14,9 +15,8 @@ export function NavBar() {
           />
         </div>
         <section className="flex basis-1/2 items-center justify-evenly font-bold text-white">
-          <a
-            rel="noopener"
-            href="#auction"
+          <Link
+            href="/auctions"
             className="flex items-center gap-2 hover:underline"
           >
             <Image
@@ -27,10 +27,9 @@ export function NavBar() {
               className="size-6"
             />
             Auctions
-          </a>
-          <a
-            rel="noopener"
-            href="#vehicles"
+          </Link>
+          <Link
+            href="/vehicles"
             className="flex items-center gap-2 hover:underline"
           >
             <Image
@@ -41,12 +40,8 @@ export function NavBar() {
               className="size-6"
             />
             All Vehicles
-          </a>
-          <a
-            rel="noopener"
-            href="#faq"
-            className="flex items-center gap-2 hover:underline"
-          >
+          </Link>
+          <Link href="/faq" className="flex items-center gap-2 hover:underline">
             <Image
               src="question.svg"
               alt="faq"
@@ -55,7 +50,7 @@ export function NavBar() {
               className="size-5"
             />
             FAQ
-          </a>
+          </Link>
         </section>
       </div>
     </nav>
