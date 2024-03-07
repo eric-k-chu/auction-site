@@ -60,7 +60,7 @@ export function Vehicles({ isOpen, vehicles, displayAmount = 9 }: Props) {
           alt="click to expand"
           width={0}
           height={0}
-          className={`size-6 transition-transform duration-300 ease-in-out ${!isExpanded ? "rotate-0" : "rotate-180"}`}
+          className={`size-5 transition-transform duration-300 ease-in-out md:size-6 ${!isExpanded ? "rotate-0" : "rotate-180"}`}
         />
       </a>
     </div>

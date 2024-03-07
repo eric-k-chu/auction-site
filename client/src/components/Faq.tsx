@@ -96,7 +96,9 @@ export function Faq() {
               <strong className="font-semibold">{n.title}</strong>
             </button>
             {currentFaq === n && (
-              <p className="p-10 pt-2 text-sm md:text-base">{n.description}</p>
+              <p className="p-10 pt-2 text-sm leading-6 md:text-base">
+                {n.description}
+              </p>
             )}
           </div>
         ))}
