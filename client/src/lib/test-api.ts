@@ -6,7 +6,6 @@ export async function fetchExampleData(delay = 3000): Promise<Lots> {
   const lots: Lots = {
     lots: [],
   };
-
   for (let i = 0; i < 1; i++) {
     const vehicles = [];
     for (let j = 0; j < 50; j++) {
@@ -20,13 +19,27 @@ export async function fetchExampleData(delay = 3000): Promise<Lots> {
       });
     }
     lots.lots.push({
-      location: `Next Auction: Legacy Towing`,
-      date: "Friday March 8th, 2024",
+      location: `Legacy Towing`,
+      date: 1709947739,
       vehicles: vehicles,
       address: "131-01 39th Ave Flushing, NY 11354",
       about:
         "I will sell at Public Auction by, on Friday March 08, 2024 at 10:00 o’clock in the morning at Legacy Towing 131-01 39th Ave Flushing, NY 11354 the right, title and interest of the judgment debtors in and to following vehicles.",
     });
   }
+
+  const alot: Lots = {
+    lots: [
+      {
+        location: "Legacy Towing",
+        date: 1709947739,
+        vehicles: [],
+        address: "131-01 39th Ave Flushing, NY 11354",
+        about:
+          "I will sell at Public Auction by, on Friday March 08, 2024 at 10:00 o'clock in the morning at Legacy Towing 131-01 39th Ave Flushing, NY 11354 the right, title and interest of the judgment debtors in and to following vehicles.",
+      },
+    ],
+  };
+
   return lots;
 }

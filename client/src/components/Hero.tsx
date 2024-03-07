@@ -21,9 +21,9 @@ export function Hero() {
             alt="downward arrow"
             width={0}
             height={0}
-            className="size-5"
+            className="size-5 animate-pulse"
           />
-          View Auction
+          Next Auction
         </a>
       </div>
       <Image

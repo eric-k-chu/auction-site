@@ -1,10 +1,14 @@
-export function Banner() {
+import { fetchExampleData } from "@/lib/test-api";
+import { getDate } from "@/lib/utils";
+
+export async function Banner() {
+  const { lots } = await fetchExampleData(1000);
   return (
     <section className="bg-randy-turquoise p-2">
       <h2 className="text-center text-white">
         Next Auction&#58;{" "}
         <span className="font-semibold">
-          {"Friday March 8th, 2024 at Legacy Towing"}
+          {`${getDate(lots[0].date)} at ${lots[0].location}`}
         </span>
       </h2>
     </section>
