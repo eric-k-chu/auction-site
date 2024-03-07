@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Randy Mark Auctioneer",
   description:
-    "Looking for your next car? We offer several open air auctions each month across New York, Check out our available cars and the dates for our next auction.",
+    "Looking for your next vehicle? Check out our available cars and the dates for our next car auction in New York.",
 };
 
 export default function RootLayout({
