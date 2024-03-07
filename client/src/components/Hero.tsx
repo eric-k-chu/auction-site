@@ -2,15 +2,17 @@ import Image from "next/image";
 
 export function Hero() {
   return (
-    <section className="mx-auto flex max-w-7xl items-center justify-between px-4 py-8">
-      <div className="basis-1/3 space-y-8">
-        <h1 className="text-6xl font-bold text-randy-navy">Car Auction</h1>
-        <p className="line-clamp-3 font-semibold text-randy-turquoise">
-          Looking for your next car? Check out our available cars and the dates
-          for our next auction.
+    <section className="mx-auto flex max-w-7xl flex-col-reverse items-center gap-y-8 px-4 py-8 md:flex-row md:justify-between">
+      <div className="flex basis-[40%] flex-col items-center gap-y-6 md:items-start md:gap-y-8">
+        <h1 className="text-3xl font-bold text-randy-navy md:text-4xl lg:text-5xl">
+          New York Car Auction
+        </h1>
+        <p className="line-clamp-3 text-center font-semibold text-randy-turquoise md:text-left">
+          Looking for your next vehicle? Check out our available cars and the
+          dates for our next car auction in New York.
         </p>
         <a
-          href="#vehicles"
+          href="#auction"
           rel="noopener"
           className="flex w-fit items-center justify-center gap-1 rounded-xl bg-randy-orange px-16 py-4"
         >
@@ -19,9 +21,9 @@ export function Hero() {
             alt="downward arrow"
             width={0}
             height={0}
-            className="size-5"
+            className="size-5 animate-pulse"
           />
-          View Lots
+          Next Auction
         </a>
       </div>
       <Image
@@ -30,7 +32,7 @@ export function Hero() {
         width={0}
         height={0}
         unoptimized
-        className="h-auto w-1/2"
+        className="h-auto w-full md:w-1/2"
       />
     </section>
   );
