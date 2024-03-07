@@ -14,9 +14,10 @@ export function NavBar() {
             className="h-12 w-auto sm:h-16 md:h-20"
           />
         </div>
-        <section className="flex basis-1/2 items-center justify-evenly font-bold text-white">
-          <Link
-            href="/auctions"
+        <section className="flex basis-1/2 items-center justify-end gap-x-10 font-bold text-white">
+          <a
+            href="#auction"
+            rel="noopener"
             className="flex items-center gap-2 hover:underline"
           >
             <Image
@@ -26,22 +27,13 @@ export function NavBar() {
               height={0}
               className="size-6"
             />
-            Auctions
-          </Link>
-          <Link
-            href="/vehicles"
+            Next Auction
+          </a>
+          <a
+            href="#faq"
+            rel="noopener"
             className="flex items-center gap-2 hover:underline"
           >
-            <Image
-              src="car.svg"
-              alt="all vehicles"
-              width={0}
-              height={0}
-              className="size-6"
-            />
-            All Vehicles
-          </Link>
-          <Link href="/faq" className="flex items-center gap-2 hover:underline">
             <Image
               src="question.svg"
               alt="faq"
@@ -50,7 +42,7 @@ export function NavBar() {
               className="size-5"
             />
             FAQ
-          </Link>
+          </a>
         </section>
       </div>
     </nav>

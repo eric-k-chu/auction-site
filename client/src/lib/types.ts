@@ -10,7 +10,9 @@ export interface Vehicle {
 export interface Lot {
   vehicles: Vehicle[];
   location: string;
-  date: EpochTimeStamp;
+  date: string;
+  address: string;
+  about: string;
 }
 
 export interface Lots {

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 export function Footer() {
   return (
@@ -12,21 +11,10 @@ export function Footer() {
           height={0}
           className="h-16 w-auto"
         />
-        <nav className="w-fit space-x-10 text-white">
-          <Link href="/auctions" className="hover:underline">
-            Auctions
-          </Link>
-          <Link href="/vehicles" className="hover:underline">
-            All Vehicles
-          </Link>
-          <Link
-            href="/faq"
-            className="hover:underline"
-            aria-description="Frequently Asked Questions"
-          >
-            FAQ
-          </Link>
-        </nav>
+        <div className="flex w-fit flex-col items-end gap-y-2 text-white">
+          <p>(516) 526-4190 | Randymarkauctioneer@gmail.com</p>
+          <strong>© 2024 Randy Mark, Auctioneer. ALL RIGHTS RESERVED</strong>
+        </div>
       </div>
     </footer>
   );

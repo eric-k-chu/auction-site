@@ -9,17 +9,17 @@ type Props = {
   lot: Lot;
 };
 
-type Tab = "vehicles" | "dates" | "contact";
+type Tab = "vehicles" | "address" | "about";
 
 export function LotInfo({ lot }: Props) {
   const [tab, setTab] = useState<Tab>("vehicles");
   const [isExpanded, setIsExpanded] = useState(false);
-  const { vehicles, date } = lot;
+  const { vehicles, address, about } = lot;
 
   return (
     <div>
       <div className="flex items-center">
-        {["vehicles", "dates", "contact"].map((n) => (
+        {["vehicles", "address", "about"].map((n) => (
           <button
             type="button"
             key={n}
@@ -32,7 +32,7 @@ export function LotInfo({ lot }: Props) {
       </div>
       <div className={`shadow-md ${tab === "vehicles" ? "block" : "hidden"}`}>
         <div
-          className={`overflow-y-hidden p-6 ${isExpanded ? "h-fit" : "h-72"}`}
+          className={`overflow-y-hidden p-6 ${isExpanded ? "h-fit" : "h-[400px]"}`}
         >
           <VehicleTable vehicles={vehicles} />
         </div>
@@ -51,11 +51,22 @@ export function LotInfo({ lot }: Props) {
           />
         </button>
       </div>
-      <div className={`shadow-md ${tab === "dates" ? "block" : "hidden"}`}>
-        <p className="p-6">{date}</p>
+      <div className={`shadow-md ${tab === "address" ? "block" : "hidden"}`}>
+        <p className="p-6">{address}</p>
       </div>
-      <div className={`shadow-md ${tab === "contact" ? "block" : "hidden"}`}>
-        <p className="p-6">Contact</p>
+      <div className={`shadow-md ${tab === "about" ? "block" : "hidden"}`}>
+        <p className="p-6">
+          {about}
+          <span className="px-2">
+            <button
+              type="button"
+              onClick={() => setTab("vehicles")}
+              className="text-blue-500 underline"
+            >
+              View Here
+            </button>
+          </span>
+        </p>
       </div>
     </div>
   );
