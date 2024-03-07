@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 export function NavBar() {
   return (
@@ -14,32 +13,32 @@ export function NavBar() {
             className="h-12 w-auto sm:h-16 md:h-20"
           />
         </div>
-        <section className="flex basis-1/2 items-center justify-end gap-x-10 font-bold text-white">
+        <section className="flex basis-1/2 items-center justify-end gap-x-6 font-bold text-white md:gap-x-10">
           <a
             href="#auction"
             rel="noopener"
-            className="flex items-center gap-2 hover:underline"
+            className="flex items-center gap-2 text-sm hover:underline md:text-base"
           >
             <Image
               src="gavel.svg"
               alt="auction"
               width={0}
               height={0}
-              className="size-6"
+              className="hidden size-7 md:block"
             />
             Next Auction
           </a>
           <a
             href="#faq"
             rel="noopener"
-            className="flex items-center gap-2 hover:underline"
+            className="flex items-center gap-2 text-sm hover:underline md:text-base"
           >
             <Image
               src="question.svg"
               alt="faq"
               width={0}
               height={0}
-              className="size-5"
+              className="hidden size-6 md:block"
             />
             FAQ
           </a>
