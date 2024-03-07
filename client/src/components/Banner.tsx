@@ -6,7 +6,7 @@ export async function Banner() {
   return (
     <section className="bg-randy-turquoise p-2">
       <h2 className="text-center text-white">
-        Next Auction&#58;{" "}
+        {"Next Auction: "}
         <span className="font-semibold">
           {`${getDate(lots[0].date)} at ${lots[0].location}`}
         </span>

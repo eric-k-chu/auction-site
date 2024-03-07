@@ -8,7 +8,7 @@ const sample = `1 2018 HYUNDAI BG42403 CT 5NPD84LF8JH223442 CAPITAL ONE AUTO FIN
 6 2018 VOLKSWAGEN LLR4925 PA 3VW547AU7JM285991
 7 2005 AUDI EC74878 IL WAULT68E45A031855
 8 2008 MERCURY KWZ5610 NY 4M2EU48848UJ05876
-9 2006 JEEP KZJ4035 NY  1J8HG58226C337531
+9 2006 JEEP KZJ4035 NY 1J8HG58226C337531
 10 2009 SUBARU LDD4876 NY JF2SH61669H759971
 11 2007 FORD LNH8229 PA 3FAHP07ZX7R227618
 12 2010 SMART B18PEN NJ WMEEJ3BA6AK360522
@@ -59,10 +59,10 @@ export async function fetchExampleData(delay = 3000): Promise<Lots> {
     const lienholder = lienholderArr.join(" ");
     return {
       vehicleId,
-      lienholder: lienholder || undefined,
+      lienholder: lienholder.toLocaleLowerCase() || undefined,
       state,
       plateNumber,
-      make,
+      make: make.toLocaleLowerCase(),
       year: parseInt(year),
     };
   });
@@ -75,7 +75,7 @@ export async function fetchExampleData(delay = 3000): Promise<Lots> {
         vehicles,
         address: "131-01 39th Ave Flushing, NY 11354",
         about:
-          "I will sell at Public Auction by, on Friday March 08, 2024 at 10:00 o’clock in the morning at Legacy Towing 131-01 39th Ave Flushing, NY 11354 the right, title and interest of the judgment debtors in and to the listed vehicles.",
+          "I will sell at Public Auction by, on Friday March 08, 2024 at 10:00 o'clock in the morning at Legacy Towing 131-01 39th Ave Flushing, NY 11354 the right, title and interest of the judgment debtors in and to the listed vehicles.",
       },
     ],
   };

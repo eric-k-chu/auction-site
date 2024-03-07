@@ -12,8 +12,10 @@ export function Footer() {
           className="h-16 w-auto"
         />
         <div className="flex w-fit flex-col items-end gap-y-2 text-white">
-          <p>(516) 526-4190 | Randymarkauctioneer@gmail.com</p>
-          <strong>© 2024 Randy Mark, Auctioneer. ALL RIGHTS RESERVED</strong>
+          <p>{"(516) 526-4190 | Randymarkauctioneer@gmail.com"}</p>
+          <strong>
+            {"© 2024 Randy Mark, Auctioneer. ALL RIGHTS RESERVED"}
+          </strong>
         </div>
       </div>
     </footer>
