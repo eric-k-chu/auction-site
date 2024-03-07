@@ -76,8 +76,8 @@ export function Faq() {
   }
 
   return (
-    <section className="bg-randy-eggshell pb-20 pt-10" id="faq">
-      <div className="mx-auto max-w-7xl space-y-6 p-4">
+    <section className="bg-randy-eggshell" id="faq">
+      <div className="mx-auto my-12 max-w-7xl space-y-6 px-4 py-8">
         <h2 className="text-2xl font-bold md:text-4xl">FAQ</h2>
         {faqs.map((n, i) => (
           <div key={i} className="rounded-xl bg-white shadow-md">

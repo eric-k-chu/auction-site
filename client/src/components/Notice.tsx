@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export function Notice() {
   return (
-    <section className="mx-auto my-20 max-w-7xl space-y-4 p-4">
-      <h2 className="text-4xl font-bold">Notice</h2>
-      <p className="text-base">
+    <section className="mx-auto my-12 max-w-7xl space-y-6 px-4 py-8">
+      <h2 className="text-2xl font-bold md:text-4xl">Notice</h2>
+      <p className="text-sm md:text-base">
         {`The Department of Finance, the New York City Marshal and the Office of
         the Sheriff make no warranty, expressed or implied, as to the year of
         any vehicle or any vehicle’s quality or state of repair. Successful
