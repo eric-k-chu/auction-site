@@ -71,7 +71,7 @@ export async function fetchExampleData(delay = 3000): Promise<Lots> {
     lots: [
       {
         location: "Legacy Towing",
-        date: 1709947739,
+        date: 1709878760,
         vehicles,
         address: "131-01 39th Ave Flushing, NY 11354",
         about:
