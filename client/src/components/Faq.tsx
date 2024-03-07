@@ -78,11 +78,11 @@ export function Faq() {
   return (
     <section className="bg-randy-eggshell pb-20 pt-10" id="faq">
       <div className="mx-auto max-w-7xl space-y-6 p-4">
-        <h2 className="text-4xl font-bold">FAQ</h2>
+        <h2 className="text-2xl font-bold md:text-4xl">FAQ</h2>
         {faqs.map((n, i) => (
           <div key={i} className="rounded-xl bg-white shadow-md">
             <button
-              className="flex w-full items-center gap-10 p-10"
+              className="flex w-full items-center gap-6 px-6 py-10 text-left text-sm md:gap-10 md:px-10 md:text-base"
               type="button"
               onClick={() => setFaq(n)}
             >
@@ -91,11 +91,13 @@ export function Faq() {
                 alt="arrow down"
                 width={0}
                 height={0}
-                className="size-5"
+                className="size-4 md:size-5"
               />
               <strong className="font-semibold">{n.title}</strong>
             </button>
-            {currentFaq === n && <p className="p-10 pt-2">{n.description}</p>}
+            {currentFaq === n && (
+              <p className="p-10 pt-2 text-sm md:text-base">{n.description}</p>
+            )}
           </div>
         ))}
       </div>

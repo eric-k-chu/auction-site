@@ -14,10 +14,10 @@ export function Vehicles({ isOpen, vehicles, displayAmount = 9 }: Props) {
   const [isExpanded, setIsExpanded] = useState(false);
   return (
     <div
-      className={`overflow-hidden rounded-xl shadow-md ${isOpen ? "block" : "hidden"}`}
+      className={`overflow-scroll rounded-xl shadow-md ${isOpen ? "block" : "hidden"}`}
     >
-      <div className="p-6">
-        <table>
+      <div className="p-4 md:p-6">
+        <table className="text-sm md:text-base">
           <thead>
             <tr>
               <th scope="col">&#35;</th>

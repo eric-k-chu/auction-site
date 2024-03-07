@@ -12,12 +12,12 @@ export async function Auctions() {
           id="auction"
           className="mx-auto my-20 max-w-7xl space-y-6 p-4"
         >
-          <h2 className="text-4xl font-bold">{n.location}</h2>
-          <div className="flex items-center gap-x-2 text-lg">
+          <h2 className="text-2xl font-bold md:text-4xl">{n.location}</h2>
+          <div className="flex items-center gap-x-2 text-base md:text-lg">
             <strong>Address:</strong>
             <p>{n.address}</p>
           </div>
-          <div className="flex items-center gap-x-2 text-lg">
+          <div className="flex items-center gap-x-2 text-base md:text-lg">
             <strong>Date:</strong>
             <p>{getDate(n.date)}</p>
           </div>

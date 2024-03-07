@@ -23,7 +23,7 @@ export function AuctionInfo({ lot }: Props) {
             type="button"
             key={n}
             onClick={() => setTab(n as Tab)}
-            className={`border-b-4 px-2 text-lg capitalize transition-colors duration-300 ease-in-out ${n === tab ? "border-b-randy-orange font-semibold text-black" : "border-b-randy-turquoise font-normal text-randy-turquoise"}`}
+            className={`border-b-4 px-2 text-base capitalize transition-colors duration-300 ease-in-out md:text-lg ${n === tab ? "border-b-randy-orange font-semibold text-black" : "border-b-randy-turquoise font-normal text-randy-turquoise"}`}
           >
             {n}
           </button>
