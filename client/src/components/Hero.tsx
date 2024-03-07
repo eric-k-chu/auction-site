@@ -3,10 +3,13 @@ import Image from "next/image";
 export function Hero() {
   return (
     <section className="mx-auto flex max-w-7xl flex-col-reverse items-center gap-y-8 px-4 py-8 md:flex-row md:justify-between">
-      <div className="flex basis-[40%] flex-col items-center gap-y-6 md:items-start md:gap-y-8">
+      <div className="flex basis-[40%] flex-col items-center gap-y-4 md:items-start md:gap-y-6">
         <h1 className="text-3xl font-bold text-randy-navy md:text-4xl lg:text-5xl">
           New York Car Auction
         </h1>
+        <h2 className="text-center text-lg text-randy-navy md:text-left md:text-2xl">
+          Marshal Gary H. Rose Public Execution Sale
+        </h2>
         <p className="line-clamp-3 text-center font-semibold text-randy-turquoise md:text-left">
           Looking for your next vehicle? Check out our available cars and the
           dates for our next car auction in New York.
