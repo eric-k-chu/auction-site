@@ -19,5 +19,5 @@ td {
 }
 
 tbody > tr {
-  @apply border-b-randy-eggshell border-b;
+  @apply border-b border-b-randy-eggshell;
 }

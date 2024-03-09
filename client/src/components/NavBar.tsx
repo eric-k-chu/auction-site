@@ -8,7 +8,7 @@ export function NavBar() {
           <svg
             viewBox="0 0 248 87"
             fill="none"
-            className="h-12 w-auto sm:h-16 md:h-20"
+            className="h-14 w-auto"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -17,7 +17,7 @@ export function NavBar() {
             />
           </svg>
         </div>
-        <section className="flex basis-1/2 items-center justify-end gap-x-6 font-bold text-white md:gap-x-10">
+        <section className="flex basis-1/2 items-center justify-end gap-x-6 font-bold text-white lg:gap-x-10">
           <a
             href="#auction"
             rel="noopener"
