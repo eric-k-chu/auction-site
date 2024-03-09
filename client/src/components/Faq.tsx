@@ -80,7 +80,7 @@ export function Faq() {
       <div className="mx-auto max-w-7xl space-y-6 p-12">
         <h2 className="text-2xl font-bold md:text-4xl">FAQ</h2>
         {faqs.map((n, i) => (
-          <div key={i} className="rounded-xl bg-white shadow-md">
+          <div key={i} className="rounded-xl bg-white shadow-lg">
             <button
               className="flex w-full items-center gap-6 px-6 py-10 text-left text-sm md:gap-10 md:px-10 md:text-base"
               type="button"
