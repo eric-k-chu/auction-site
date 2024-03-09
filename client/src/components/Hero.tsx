@@ -5,10 +5,10 @@ export function Hero() {
     <section className="mx-auto flex max-w-7xl items-center justify-center">
       <div className="flex w-full flex-col items-center justify-between gap-12 px-12 py-24 lg:flex-row">
         <div className="flex w-full flex-shrink flex-col items-center gap-y-6 py-6 lg:w-[500px] lg:items-start">
-          <h1 className="text-5xl font-bold text-randy-navy lg:text-4xl">
+          <h1 className="text-center text-5xl font-bold text-randy-navy lg:text-left lg:text-4xl">
             New York Car Auction
           </h1>
-          <h2 className="text-lg text-randy-navy lg:text-xl">
+          <h2 className="text-center text-lg text-randy-navy lg:text-left lg:text-xl">
             Marshal Gary H. Rose Public Execution Sale
           </h2>
           <p className="max-w-[500px] text-center text-lg font-semibold text-randy-turquoise lg:text-left lg:text-xl">
