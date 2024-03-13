@@ -1,16 +1,19 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export function AdminLoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   function handleSignIn(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     alert(`${username} and ${password}`);
     setUsername("");
     setPassword("");
+    router.push("/admin/dashboard");
   }
 
   return (

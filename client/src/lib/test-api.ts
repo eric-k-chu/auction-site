@@ -1,4 +1,5 @@
 import { Lots } from "@/lib/types";
+import { randomUUID } from "crypto";
 
 const sample = `1 2018 HYUNDAI BG42403 CT 5NPD84LF8JH223442 CAPITAL ONE AUTO FINANCE
 2 2021 HONDA KXN6072 NY 5FNYF8H27MB032182
@@ -70,6 +71,7 @@ export async function fetchExampleData(delay = 3000): Promise<Lots> {
   return {
     lots: [
       {
+        id: randomUUID(),
         location: "Legacy Towing",
         date: 1709878760,
         vehicles,

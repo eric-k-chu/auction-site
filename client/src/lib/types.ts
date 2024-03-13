@@ -1,3 +1,14 @@
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      GITHUB_USERNAME: string;
+      GITHUB_PAT: string;
+      GITHUB_EMAIL: string;
+      NAME: string;
+    }
+  }
+}
+
 export interface Vehicle {
   vehicleId: string;
   lienholder?: string;
@@ -8,6 +19,7 @@ export interface Vehicle {
 }
 
 export interface Lot {
+  id: string;
   vehicles: Vehicle[];
   location: string;
   date: EpochTimeStamp;

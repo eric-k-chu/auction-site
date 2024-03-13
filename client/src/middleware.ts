@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const protectedRoutes = ["/admin"];
+const protectedRoutes = ["/notadmin"];
 
 export default function middleware(req: NextRequest) {
   if (
