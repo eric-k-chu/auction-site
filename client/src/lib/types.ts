@@ -9,6 +9,16 @@ declare global {
   }
 }
 
+export interface GitFile {
+  name: string;
+  path: string;
+  sha: string;
+  size: number;
+  url: string;
+  html_url: string;
+  content: string;
+}
+
 export interface Vehicle {
   vehicleId: string;
   lienholder?: string;

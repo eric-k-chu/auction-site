@@ -1,5 +1,5 @@
 import { promises as fs } from "fs";
-import { Lot, Lots } from "./types";
+import { GitFile, Lot, Lots } from "./types";
 
 const days = [
   "Sunday",
@@ -36,12 +36,20 @@ export function getDate(timestamp: EpochTimeStamp) {
   return dayName + " " + monthName + " " + day + ", " + year;
 }
 
+export function decode64<T>(b64: string): T {
+  return JSON.parse(atob(b64));
+}
+
+export function encode64<T>(obj: T): string {
+  return btoa(JSON.stringify(obj));
+}
+
 // TODO: TEMP REPO NAME githubdb
 export async function readAuctions(): Promise<Lots> {
   const repo = "githubdb";
-  const data = "sample.json";
+  const dataFile = "sample.json";
   const res = await fetch(
-    `https://api.github.com/repos/${process.env.GITHUB_USERNAME}/${repo}/contents/${data}`,
+    `https://api.github.com/repos/${process.env.GITHUB_USERNAME}/${repo}/contents/${dataFile}`,
     {
       headers: {
         authorization: `token ${process.env.GITHUB_PAT}`,
@@ -49,7 +57,8 @@ export async function readAuctions(): Promise<Lots> {
     },
   );
   if (!res.ok) throw new Error(`${res.status}: An error has occured.`);
-  return await res.json();
+  const data = (await res.json()) as GitFile;
+  return decode64(data.content);
 }
 
 export async function getAuctionById(id: string): Promise<Lot> {
