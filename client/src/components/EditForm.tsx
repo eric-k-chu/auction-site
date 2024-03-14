@@ -1,36 +1,25 @@
 "use client";
 
+import { updateAuction } from "@/lib/actions";
 import { Lot } from "@/lib/types";
-import { updateAuction } from "@/lib/utils";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { useFieldArray, useForm } from "react-hook-form";
+import { FormSubmitButton } from "./FormSubmitButton";
 
 // TODO: CREATE CALENDAR FOR CHOOSING THE DATE
 export function EditForm({ lot, sha }: { lot: Lot; sha: string }) {
   const form = useForm<Lot>({ defaultValues: lot });
-  const { register, control, handleSubmit, formState } = form;
+  const { register, control, formState, getValues } = form;
   const { errors } = formState;
   const { fields, append, remove } = useFieldArray({
     name: "vehicles",
     control,
   });
 
-  async function onSubmit(newLot: Lot) {
-    try {
-      await updateAuction(sha, newLot);
-    } catch (e) {
-      alert(e);
-    } finally {
-      alert("Sucessfully updated!");
-      redirect("/admin/dashboard");
-    }
-  }
-
   return (
     <form
       className="flex w-full max-w-4xl flex-col gap-y-8 rounded-lg bg-white px-10 py-8 shadow-sm shadow-zinc-300"
-      onSubmit={handleSubmit(onSubmit)}
+      action={() => updateAuction(sha, getValues())}
     >
       <label className="space-y-2 text-sm md:text-base">
         <strong>Location</strong>
@@ -199,12 +188,7 @@ export function EditForm({ lot, sha }: { lot: Lot; sha: string }) {
         >
           Cancel
         </Link>
-        <button
-          type="submit"
-          className="rounded-md bg-green-600 px-2 py-1 text-sm text-white hover:bg-green-600/85 md:text-base"
-        >
-          Confirm
-        </button>
+        <FormSubmitButton />
       </div>
     </form>
   );

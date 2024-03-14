@@ -1,5 +1,5 @@
 import { EditForm } from "@/components/EditForm";
-import { getAuctionById } from "@/lib/utils";
+import { getAuctionById } from "@/lib/actions";
 
 export default async function LotPage({ params }: { params: { id: string } }) {
   const [lot, sha] = await getAuctionById(params.id);

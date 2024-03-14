@@ -1,4 +1,5 @@
-import { getAuctions, getDate } from "@/lib/utils";
+import { getAuctions } from "@/lib/actions";
+import { getDate } from "@/lib/utils";
 
 export async function Banner() {
   const { lots } = await getAuctions();

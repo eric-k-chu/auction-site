@@ -1,5 +1,6 @@
-import { getAuctions, getDate } from "@/lib/utils";
+import { getAuctions } from "@/lib/actions";
 import { AuctionInfo } from "./AuctionInfo";
+import { getDate } from "@/lib/utils";
 
 export async function Auctions() {
   const { lots } = await getAuctions();

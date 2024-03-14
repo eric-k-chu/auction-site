@@ -1,4 +1,5 @@
-import { getDate, getAuctions } from "@/lib/utils";
+import { getAuctions } from "@/lib/actions";
+import { getDate } from "@/lib/utils";
 import Link from "next/link";
 
 export default async function DashboardPage() {
