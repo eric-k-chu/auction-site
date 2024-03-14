@@ -25,7 +25,7 @@ export interface Vehicle {
   state: string;
   plateNumber: string;
   make: string;
-  year: number;
+  year: string;
 }
 
 export interface Lot {
@@ -39,6 +39,7 @@ export interface Lot {
 
 export interface Lots {
   lots: Lot[];
+  sha: string;
 }
 
 export interface Faq {

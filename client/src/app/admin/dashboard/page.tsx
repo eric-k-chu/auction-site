@@ -1,8 +1,8 @@
-import { getDate, readAuctions } from "@/lib/utils";
+import { getDate, getAuctions } from "@/lib/utils";
 import Link from "next/link";
 
 export default async function DashboardPage() {
-  const { lots } = await readAuctions();
+  const { lots } = await getAuctions();
   return (
     <div className="flex min-h-screen flex-col items-center gap-y-8 bg-zinc-100 p-12">
       <h2 className="w-full max-w-3xl text-2xl font-bold md:text-4xl">

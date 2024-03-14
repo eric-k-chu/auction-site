@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const protectedRoutes = ["/admin", "/admin/dashboard"];
+// const protectedRoutes = ["/admin", "/admin/dashboard"];
+const protectedRoutes = [""];
 
 export default function middleware(req: NextRequest) {
   if (

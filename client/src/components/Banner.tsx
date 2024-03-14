@@ -1,8 +1,7 @@
-import { fetchExampleData } from "@/lib/test-api";
-import { getDate } from "@/lib/utils";
+import { getAuctions, getDate } from "@/lib/utils";
 
 export async function Banner() {
-  const { lots } = await fetchExampleData(1000);
+  const { lots } = await getAuctions();
   return (
     <section className="bg-randy-turquoise px-2 py-4">
       <h2 className="text-center text-sm text-white md:text-base">

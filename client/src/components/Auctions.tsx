@@ -1,9 +1,8 @@
-import { fetchExampleData } from "@/lib/test-api";
+import { getAuctions, getDate } from "@/lib/utils";
 import { AuctionInfo } from "./AuctionInfo";
-import { getDate } from "@/lib/utils";
 
 export async function Auctions() {
-  const { lots } = await fetchExampleData(1000);
+  const { lots } = await getAuctions();
   return (
     <>
       {lots.map((n) => (
