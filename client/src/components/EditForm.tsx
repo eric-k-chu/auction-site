@@ -55,12 +55,27 @@ export function EditForm({ lot, sha }: { lot: Lot; sha: string }) {
         <strong>Date</strong>
         <input
           className="w-full rounded-md pl-2 leading-8 shadow-sm shadow-zinc-300 ring-1 ring-zinc-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          type="number"
+          type="date"
           id="date"
           {...register("date", {
             required: {
               value: true,
               message: "Date is required.",
+            },
+          })}
+        />
+        <p className="text-sm text-red-600">{errors.date?.message}</p>
+      </label>
+      <label className="space-y-2 text-sm md:text-base">
+        <strong>Time</strong>
+        <input
+          className="w-full rounded-md pl-2 leading-8 shadow-sm shadow-zinc-300 ring-1 ring-zinc-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="time"
+          id="date"
+          {...register("time", {
+            required: {
+              value: true,
+              message: "time is required.",
             },
           })}
         />

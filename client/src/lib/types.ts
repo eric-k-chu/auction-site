@@ -32,7 +32,8 @@ export interface Lot {
   id: string;
   vehicles: Vehicle[];
   location: string;
-  date: EpochTimeStamp;
+  date: string;
+  time: string;
   address: string;
   about: string;
 }

@@ -1,6 +1,6 @@
 import { getAuctions } from "@/lib/actions";
 import { AuctionInfo } from "./AuctionInfo";
-import { getDate } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 
 export async function Auctions() {
   const { lots } = await getAuctions();
@@ -19,7 +19,7 @@ export async function Auctions() {
           </div>
           <div className="flex items-center gap-x-2 text-base md:text-lg">
             <strong>Date:</strong>
-            <p>{getDate(n.date)}</p>
+            <p>{formatDate(n.date, n.time)}</p>
           </div>
           <AuctionInfo lot={n} />
         </section>

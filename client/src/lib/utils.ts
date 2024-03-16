@@ -1,43 +1,38 @@
-const days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+/*
+ * function: formatDate
+ * param: date, date string yyyy-mm-dd
+ * param: time, military time hours:minutes
+ * return: a readable date string with the format <Month> <Day> at <time>
+ *
+ * formats a date and time string into a readable string
+ */
+export function formatDate(date: string, time: string): string {
+  const newDate = new Date(`${date}T${time}`);
+  return newDate.toLocaleString("en-US", {
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+}
 
 /*
- * function: getDate
- * param: timestamp, an EpochTimeStamp
- * return: returns a string with the format <Day of the Week> <Month> <Day>, <Year>
+ * function: getCurrentDate
+ * return: returns the current date string with the format <Day of the Week> <Month> <Day>, <Year>
  *
- * converts a timestamp into a readable string
+ * Gets the current date
  */
-export function getDate(timestamp: EpochTimeStamp) {
-  const date = new Date(timestamp * 1000);
-
-  const dayName = days[date.getDay()];
-  const monthName = months[date.getMonth()];
-  const day = date.getDate();
-  const year = date.getFullYear();
-
-  return dayName + " " + monthName + " " + day + ", " + year;
+export function getCurrentDate(): string {
+  const currentDate = new Date();
+  return currentDate.toLocaleString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
 }
 
 /*

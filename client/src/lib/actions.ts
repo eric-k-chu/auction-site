@@ -1,7 +1,7 @@
 "use server";
 
 import { Octokit } from "octokit";
-import { decode64, encode64, getDate } from "./utils";
+import { decode64, encode64, getCurrentDate } from "./utils";
 import { Lots, GitFile, Lot } from "./types";
 import { redirect } from "next/navigation";
 
@@ -34,7 +34,7 @@ export async function updateAuction(sha: string, newLot: Lot): Promise<void> {
     owner: username,
     repo: "githubdb",
     path: "sample.json",
-    message: `Updating Auction Data: ${getDate(Date.now() / 1000)}`,
+    message: `Updating Auction Data: ${getCurrentDate()}`,
     committer: {
       name: name.split("_").join(" "),
       email: email,

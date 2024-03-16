@@ -1,5 +1,5 @@
 import { getAuctions } from "@/lib/actions";
-import { getDate } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import Link from "next/link";
 
 export default async function DashboardPage() {
@@ -15,7 +15,7 @@ export default async function DashboardPage() {
             key={n.id}
             className="flex items-center justify-between rounded-lg bg-white p-4 text-sm shadow-sm shadow-zinc-300 md:text-base"
           >
-            <strong>{getDate(n.date)}</strong>
+            <strong>{formatDate(n.date, n.time)}</strong>
             <Link
               href={`/admin/dashboard/${n.id}`}
               className="flex-shrink-0 rounded-md bg-randy-navy px-2 py-1 text-white hover:bg-randy-navy/85"
