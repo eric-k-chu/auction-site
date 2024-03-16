@@ -5,6 +5,7 @@ import { Lot } from "@/lib/types";
 import Link from "next/link";
 import { useFieldArray, useForm } from "react-hook-form";
 import { FormSubmitButton } from "./FormSubmitButton";
+import { useRef, useState } from "react";
 
 // TODO: CREATE CALENDAR FOR CHOOSING THE DATE
 export function EditForm({ lot, sha }: { lot: Lot; sha: string }) {
@@ -15,12 +16,61 @@ export function EditForm({ lot, sha }: { lot: Lot; sha: string }) {
     name: "vehicles",
     control,
   });
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [currentVehicleIndex, setCurrentVehicleIndex] = useState<number>();
+
+  function openConfirmationWindow(vehicleIndex?: number): void {
+    vehicleIndex && setCurrentVehicleIndex(vehicleIndex);
+    dialogRef.current?.showModal();
+  }
+
+  function confirmDeletion(): void {
+    if (currentVehicleIndex === undefined) {
+      remove();
+      dialogRef.current?.close();
+    } else {
+      remove(currentVehicleIndex);
+      setCurrentVehicleIndex(undefined);
+      dialogRef.current?.close();
+    }
+  }
+
+  function cancelDeletion(): void {
+    setCurrentVehicleIndex(undefined);
+    dialogRef.current?.close();
+  }
 
   return (
     <form
       className="flex w-full max-w-4xl flex-col gap-y-8 rounded-lg bg-white px-10 py-8 shadow-sm shadow-zinc-300"
       action={() => updateAuction(sha, getValues())}
     >
+      <dialog
+        ref={dialogRef}
+        className="space-y-8 rounded-md bg-white p-4 pt-8 text-sm text-black shadow-sm md:text-base"
+      >
+        <strong>
+          {currentVehicleIndex
+            ? "Are you sure you want to delete this entry?"
+            : "Are you sure you want to delete all vehicles?"}
+        </strong>
+        <div className="flex items-center justify-around">
+          <button
+            type="button"
+            className="rounded-md bg-red-600 px-2 py-1 text-white hover:bg-red-600/85"
+            onClick={cancelDeletion}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className="rounded-md bg-green-600 px-2 py-1 text-white hover:bg-green-600/85"
+            onClick={confirmDeletion}
+          >
+            Confirm
+          </button>
+        </div>
+      </dialog>
       <label className="space-y-2 text-sm md:text-base">
         <strong>Location</strong>
         <input
@@ -102,7 +152,7 @@ export function EditForm({ lot, sha }: { lot: Lot; sha: string }) {
           {fields.length > 0 && (
             <button
               type="button"
-              onClick={() => remove()}
+              onClick={() => openConfirmationWindow()}
               className="text-xs text-red-600 underline md:text-sm"
             >
               Delete All Vehicles?
@@ -160,7 +210,7 @@ export function EditForm({ lot, sha }: { lot: Lot; sha: string }) {
             />
             <button
               type="button"
-              onClick={() => remove(i)}
+              onClick={() => openConfirmationWindow(i)}
               className="group ml-auto flex w-[4%] items-center justify-center rounded-md bg-transparent p-1 text-black transition-colors ease-in-out hover:bg-red-600 hover:text-white"
             >
               <svg
