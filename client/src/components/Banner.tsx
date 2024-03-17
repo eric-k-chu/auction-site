@@ -2,7 +2,7 @@ import { getAuctions } from "@/lib/actions";
 import { formatDate } from "@/lib/utils";
 
 export async function Banner() {
-  const [lots, error] = await getAuctions();
+  const { data, error } = await getAuctions();
 
   if (error !== null) {
     return (
@@ -14,9 +14,9 @@ export async function Banner() {
     );
   }
 
-  if (!lots) return null;
+  if (!data) return null;
 
-  const { date, time, location } = lots.lots[0];
+  const { date, time, location } = data.lots[0];
 
   return (
     <section className="bg-randy-turquoise px-2 py-4">

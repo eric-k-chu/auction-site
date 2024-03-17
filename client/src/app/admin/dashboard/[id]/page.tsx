@@ -2,7 +2,7 @@ import { EditForm } from "@/components/EditForm";
 import { getAuctionById } from "@/lib/actions";
 
 export default async function LotPage({ params }: { params: { id: string } }) {
-  const [data, error] = await getAuctionById(params.id);
+  const { data, error } = await getAuctionById(params.id);
 
   if (error !== null) {
     return (

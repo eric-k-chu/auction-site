@@ -50,6 +50,11 @@ export interface Faq {
 
 type Error = string | null;
 
-export type ApiResponse200<T> = [T | null, Error];
+export interface Response200<T> {
+  data: T | null;
+  error: Error;
+}
 
-export type ApiResponse204 = [Error];
+export interface Response204 {
+  error: Error;
+}

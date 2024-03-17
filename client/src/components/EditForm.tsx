@@ -42,7 +42,7 @@ export function EditForm({ lot, sha }: { lot: Lot; sha: string }) {
   }
 
   async function updateNewAuctionData() {
-    const [error] = await updateAuction(sha, getValues());
+    const { error } = await updateAuction(sha, getValues());
 
     if (error !== null) {
       alert(error);

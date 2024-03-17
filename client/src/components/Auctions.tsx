@@ -3,7 +3,7 @@ import { AuctionInfo } from "./AuctionInfo";
 import { formatDate } from "@/lib/utils";
 
 export async function Auctions() {
-  const [lots, error] = await getAuctions();
+  const { data, error } = await getAuctions();
 
   if (error !== null) {
     return (
@@ -13,11 +13,11 @@ export async function Auctions() {
     );
   }
 
-  if (!lots) return null;
+  if (!data) return null;
 
   return (
     <>
-      {lots.lots.map((n) => (
+      {data.lots.map((n) => (
         <section
           key={n.location}
           id="auction"

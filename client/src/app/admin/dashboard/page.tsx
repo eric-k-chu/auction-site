@@ -3,7 +3,7 @@ import { formatDate } from "@/lib/utils";
 import Link from "next/link";
 
 export default async function DashboardPage() {
-  const [lots, error] = await getAuctions();
+  const { data, error } = await getAuctions();
 
   if (error !== null) {
     return (
@@ -13,7 +13,7 @@ export default async function DashboardPage() {
     );
   }
 
-  if (!lots) return null;
+  if (!data) return null;
 
   return (
     <div className="flex min-h-screen flex-col items-center gap-y-8 bg-zinc-100 p-12">
@@ -21,7 +21,7 @@ export default async function DashboardPage() {
         Auction List
       </h2>
       <ul className="mx-auto w-full max-w-3xl">
-        {lots.lots.map((n) => (
+        {data.lots.map((n) => (
           <li
             key={n.id}
             className="flex items-center justify-between rounded-lg bg-white p-4 text-sm shadow-sm shadow-zinc-300 md:text-base"

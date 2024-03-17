@@ -1,7 +1,7 @@
 "use server";
 
 import { Octokit } from "octokit";
-import { ApiResponse200, ApiResponse204, GitFile, Lot, Lots } from "./types";
+import { GitFile, Lot, Lots, Response200, Response204 } from "./types";
 import { decode64, encode64, getCurrentDate, getErrorMessage } from "./utils";
 
 /*
@@ -14,7 +14,7 @@ import { decode64, encode64, getCurrentDate, getErrorMessage } from "./utils";
 export async function updateAuction(
   sha: string,
   newLot: Lot,
-): Promise<ApiResponse204> {
+): Promise<Response204> {
   const username = process.env.GITHUB_USERNAME;
   const pat = process.env.GITHUB_PAT;
   const email = process.env.GITHUB_EMAIL;
@@ -47,9 +47,13 @@ export async function updateAuction(
       },
     });
 
-    return [null];
+    return {
+      error: null,
+    };
   } catch (e) {
-    return [getErrorMessage(e)];
+    return {
+      error: getErrorMessage(e),
+    };
   }
 }
 
@@ -59,7 +63,7 @@ export async function updateAuction(
  *
  * Pulls json file from the Github repository and decodes it into a Lots object along with sha of the json file.
  */
-export async function getAuctions(): Promise<ApiResponse200<Lots>> {
+export async function getAuctions(): Promise<Response200<Lots>> {
   // TODO: CHANGE TEMP REPO NAME githubdb AND FILE NAME sample.json
   const repo = "githubdb";
   const dataFile = "sample.json";
@@ -81,9 +85,15 @@ export async function getAuctions(): Promise<ApiResponse200<Lots>> {
       sha: data.sha,
     };
 
-    return [lots, null];
+    return {
+      data: lots,
+      error: null,
+    };
   } catch (e) {
-    return [null, getErrorMessage(e)];
+    return {
+      data: null,
+      error: getErrorMessage(e),
+    };
   }
 }
 
@@ -95,24 +105,28 @@ export async function getAuctions(): Promise<ApiResponse200<Lots>> {
  * Pulls auctions from the Github repository and finds the associated lot given the id.
  */
 export async function getAuctionById(id: string): Promise<
-  ApiResponse200<{
+  Response200<{
     lot: Lot;
     sha: string;
   }>
 > {
-  const [data, error] = await getAuctions();
+  const { data, error } = await getAuctions();
 
   if (error !== null) {
-    return [null, error];
+    return { data: null, error };
   }
 
   const lot = data?.lots.find((n) => n.id === id);
   if (lot === undefined) {
-    return [null, `Unable to find auction with id: ${id}`];
-  }
-  if (data?.sha === undefined) {
-    return [null, "Unable to get SHA of file."];
+    return { data: null, error: `Unable to find auction with id: ${id}` };
   }
 
-  return [{ lot, sha: data.sha }, null];
+  if (data?.sha === undefined) {
+    return { data: null, error: "Unable to get SHA of file." };
+  }
+
+  return {
+    data: { lot, sha: data.sha },
+    error: null,
+  };
 }
