@@ -56,3 +56,16 @@ export function decode64<T>(b64: string): T {
 export function encode64<T>(obj: T): string {
   return btoa(JSON.stringify(obj));
 }
+
+/*
+ * function: getError
+ * param: error, an unknown object
+ * return: a string message describing the error
+ *
+ * Converts an unknown error object to descriptive message about the error.
+ */
+export function getErrorMessage(error: unknown): string {
+  return error instanceof Error
+    ? error.message
+    : "An unexpected error has occured.";
+}

@@ -1,9 +1,8 @@
 "use server";
 
 import { Octokit } from "octokit";
-import { decode64, encode64, getCurrentDate } from "./utils";
-import { Lots, GitFile, Lot } from "./types";
-import { redirect } from "next/navigation";
+import { ApiResponse200, ApiResponse204, GitFile, Lot, Lots } from "./types";
+import { decode64, encode64, getCurrentDate, getErrorMessage } from "./utils";
 
 /*
  * function: updateAuction
@@ -12,41 +11,46 @@ import { redirect } from "next/navigation";
  *
  * Updates the json file in the Github repository which contains information about the upcoming auction.
  */
-export async function updateAuction(sha: string, newLot: Lot): Promise<void> {
+export async function updateAuction(
+  sha: string,
+  newLot: Lot,
+): Promise<ApiResponse204> {
   const username = process.env.GITHUB_USERNAME;
-  if (!username) throw new Error("need to add GITHUB_USERNAME in .env file.");
-
   const pat = process.env.GITHUB_PAT;
-  if (!pat) throw new Error("need to add GITHUB_PAT in .env file.");
-
   const email = process.env.GITHUB_EMAIL;
-  if (!email) throw new Error("need to add GITHUB_EMAIL in .env file.");
-
   const name = process.env.NAME;
-  if (!name) throw new Error("need to add NAME in .env file.");
 
-  const octokit = new Octokit({
-    auth: pat,
-  });
+  try {
+    if (!username) throw new Error("need to add GITHUB_USERNAME in .env file.");
+    if (!pat) throw new Error("need to add GITHUB_PAT in .env file.");
+    if (!email) throw new Error("need to add GITHUB_EMAIL in .env file.");
+    if (!name) throw new Error("need to add NAME in .env file.");
 
-  // TODO: CHANGE repo and path
-  await octokit.request("PUT /repos/{owner}/{repo}/contents/{path}", {
-    owner: username,
-    repo: "githubdb",
-    path: "sample.json",
-    message: `Updating Auction Data: ${getCurrentDate()}`,
-    committer: {
-      name: name.split("_").join(" "),
-      email: email,
-    },
-    content: encode64(newLot),
-    sha: sha,
-    headers: {
-      "X-GitHub-Api-Version": "2022-11-28",
-    },
-  });
+    const octokit = new Octokit({
+      auth: pat,
+    });
 
-  redirect("/admin/dashboard");
+    // TODO: CHANGE repo and path
+    await octokit.request("PUT /repos/{owner}/{repo}/contents/{path}", {
+      owner: username,
+      repo: "githubdb",
+      path: "sample.json",
+      message: `Updating Auction Data: ${getCurrentDate()}`,
+      committer: {
+        name: name.split("_").join(" "),
+        email: email,
+      },
+      content: encode64(newLot),
+      sha: sha,
+      headers: {
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
+    });
+
+    return [null];
+  } catch (e) {
+    return [getErrorMessage(e)];
+  }
 }
 
 /*
@@ -55,39 +59,60 @@ export async function updateAuction(sha: string, newLot: Lot): Promise<void> {
  *
  * Pulls json file from the Github repository and decodes it into a Lots object along with sha of the json file.
  */
-export async function getAuctions(): Promise<Lots> {
-  // TODO: TEMP REPO NAME githubdb
+export async function getAuctions(): Promise<ApiResponse200<Lots>> {
+  // TODO: CHANGE TEMP REPO NAME githubdb AND FILE NAME sample.json
   const repo = "githubdb";
   const dataFile = "sample.json";
-  const res = await fetch(
-    `https://api.github.com/repos/${process.env.GITHUB_USERNAME}/${repo}/contents/${dataFile}`,
-    {
-      cache: "no-cache",
-      headers: {
-        authorization: `token ${process.env.GITHUB_PAT}`,
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${process.env.GITHUB_USERNAME}/${repo}/contents/${dataFile}`,
+      {
+        cache: "no-cache",
+        headers: {
+          authorization: `token ${process.env.GITHUB_PAT}`,
+        },
       },
-    },
-  );
-  if (!res.ok) throw new Error(`${res.status}: An error has occured.`);
-  const data = (await res.json()) as GitFile;
-  return {
-    lots: [decode64<Lot>(data.content)],
-    sha: data.sha,
-  };
+    );
+    if (!res.ok) throw new Error(`${res.status}: An error has occured.`);
+    const data = (await res.json()) as GitFile;
+
+    const lots = {
+      lots: [decode64<Lot>(data.content)],
+      sha: data.sha,
+    };
+
+    return [lots, null];
+  } catch (e) {
+    return [null, getErrorMessage(e)];
+  }
 }
 
 /*
  * function: getAuctionById
  * param: id, the id of the auction
- * return: promise of a tuple containing the lot and the sha of the json file
+ * return: promise containing the lot and the sha of the json file
  *
  * Pulls auctions from the Github repository and finds the associated lot given the id.
  */
-export async function getAuctionById(id: string): Promise<[Lot, string]> {
-  const { lots, sha } = await getAuctions();
+export async function getAuctionById(id: string): Promise<
+  ApiResponse200<{
+    lot: Lot;
+    sha: string;
+  }>
+> {
+  const [data, error] = await getAuctions();
 
-  const lot = lots.find((n) => n.id === id);
+  if (error !== null) {
+    return [null, error];
+  }
 
-  if (lot === undefined) throw new Error("Unable to find lot.");
-  return [lot, sha] as const;
+  const lot = data?.lots.find((n) => n.id === id);
+  if (lot === undefined) {
+    return [null, `Unable to find auction with id: ${id}`];
+  }
+  if (data?.sha === undefined) {
+    return [null, "Unable to get SHA of file."];
+  }
+
+  return [{ lot, sha: data.sha }, null];
 }

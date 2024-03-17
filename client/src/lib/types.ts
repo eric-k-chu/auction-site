@@ -47,3 +47,9 @@ export interface Faq {
   title: string;
   description: string;
 }
+
+type Error = string | null;
+
+export type ApiResponse200<T> = [T | null, Error];
+
+export type ApiResponse204 = [Error];

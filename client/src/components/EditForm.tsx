@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useFieldArray, useForm } from "react-hook-form";
 import { FormSubmitButton } from "./FormSubmitButton";
 import { useRef, useState } from "react";
+import { redirect } from "next/navigation";
 
 // TODO: CREATE CALENDAR FOR CHOOSING THE DATE
 export function EditForm({ lot, sha }: { lot: Lot; sha: string }) {
@@ -40,10 +41,20 @@ export function EditForm({ lot, sha }: { lot: Lot; sha: string }) {
     dialogRef.current?.close();
   }
 
+  async function updateNewAuctionData() {
+    const [error] = await updateAuction(sha, getValues());
+
+    if (error !== null) {
+      alert(error);
+    } else {
+      redirect("/admin/dashboard");
+    }
+  }
+
   return (
     <form
       className="flex w-full max-w-4xl flex-col gap-y-8 rounded-lg bg-white px-10 py-8 shadow-sm shadow-zinc-300"
-      action={() => updateAuction(sha, getValues())}
+      action={updateNewAuctionData}
     >
       <dialog
         ref={dialogRef}
