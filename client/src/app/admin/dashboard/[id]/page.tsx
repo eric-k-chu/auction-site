@@ -12,7 +12,7 @@ export default async function LotPage({ params }: { params: { id: string } }) {
     );
   }
 
-  if (!data) return;
+  if (!data) return null;
 
   return (
     <div className="flex min-h-screen flex-col items-center gap-y-8 bg-zinc-100 p-12">

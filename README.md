@@ -4,5 +4,5 @@
 - [x] Add Deletion Confirmation
 - [x] Server Side Error Handling
 - [ ] Auth setup
-- [ ] Update Environment Variables
 - [ ] Data Repo and Data File Name Change
+- [ ] Update Environment Variables
