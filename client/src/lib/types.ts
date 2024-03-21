@@ -5,6 +5,7 @@ declare global {
       GITHUB_PAT: string;
       GITHUB_EMAIL: string;
       NAME: string;
+      SECRET_KEY: string;
     }
   }
 }
@@ -57,4 +58,9 @@ export interface Response200<T> {
 
 export interface Response204 {
   error: Error;
+}
+
+export interface User {
+  username: string;
+  password: string;
 }

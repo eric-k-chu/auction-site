@@ -3,12 +3,11 @@
 import { updateAuction } from "@/lib/actions";
 import { Lot } from "@/lib/types";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { useRef, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { FormSubmitButton } from "./FormSubmitButton";
-import { useRef, useState } from "react";
-import { redirect } from "next/navigation";
 
-// TODO: CREATE CALENDAR FOR CHOOSING THE DATE
 export function EditForm({ lot, sha }: { lot: Lot; sha: string }) {
   const form = useForm<Lot>({ defaultValues: lot });
   const { register, control, formState, getValues } = form;
@@ -21,7 +20,7 @@ export function EditForm({ lot, sha }: { lot: Lot; sha: string }) {
   const [currentVehicleIndex, setCurrentVehicleIndex] = useState<number>();
 
   function openConfirmationWindow(vehicleIndex?: number): void {
-    vehicleIndex && setCurrentVehicleIndex(vehicleIndex);
+    vehicleIndex !== undefined && setCurrentVehicleIndex(vehicleIndex);
     dialogRef.current?.showModal();
   }
 
@@ -43,12 +42,11 @@ export function EditForm({ lot, sha }: { lot: Lot; sha: string }) {
 
   async function updateNewAuctionData() {
     const { error } = await updateAuction(sha, getValues());
-
     if (error !== null) {
       alert(error);
-    } else {
-      redirect("/admin/dashboard");
     }
+    // If the session expires, the middleware function will automatically move the user back to the home page
+    redirect("/admin/dashboard");
   }
 
   return (
@@ -58,10 +56,10 @@ export function EditForm({ lot, sha }: { lot: Lot; sha: string }) {
     >
       <dialog
         ref={dialogRef}
-        className="space-y-8 rounded-md bg-white p-4 pt-8 text-sm text-black shadow-sm md:text-base"
+        className="space-y-8 rounded-md bg-white p-4 pt-8 text-sm text-black shadow-md md:text-base"
       >
         <strong>
-          {currentVehicleIndex
+          {currentVehicleIndex !== undefined
             ? "Are you sure you want to delete this entry?"
             : "Are you sure you want to delete all vehicles?"}
         </strong>
@@ -264,7 +262,9 @@ export function EditForm({ lot, sha }: { lot: Lot; sha: string }) {
         >
           Cancel
         </Link>
-        <FormSubmitButton />
+        <FormSubmitButton className="rounded-md bg-green-600 px-2 py-1 text-sm text-white hover:bg-green-600/85 md:text-base">
+          Save
+        </FormSubmitButton>
       </div>
     </form>
   );

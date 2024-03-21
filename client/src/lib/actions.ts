@@ -3,6 +3,7 @@
 import { Octokit } from "octokit";
 import { GitFile, Lot, Lots, Response200, Response204 } from "./types";
 import { decode64, encode64, getCurrentDate, getErrorMessage } from "./utils";
+import { getSession } from "./auth";
 
 /*
  * function: updateAuction
@@ -21,10 +22,17 @@ export async function updateAuction(
   const name = process.env.NAME;
 
   try {
-    if (!username) throw new Error("need to add GITHUB_USERNAME in .env file.");
-    if (!pat) throw new Error("need to add GITHUB_PAT in .env file.");
-    if (!email) throw new Error("need to add GITHUB_EMAIL in .env file.");
-    if (!name) throw new Error("need to add NAME in .env file.");
+    if (!username || !pat || !email || !name) {
+      throw new Error(
+        "Missing environment variables. Please check your Vercel dashboard.",
+      );
+    }
+
+    const session = await getSession();
+
+    if (session === null) {
+      throw new Error("Your session has expired. Please login once again.");
+    }
 
     const octokit = new Octokit({
       auth: pat,
@@ -47,13 +55,9 @@ export async function updateAuction(
       },
     });
 
-    return {
-      error: null,
-    };
+    return { error: null };
   } catch (e) {
-    return {
-      error: getErrorMessage(e),
-    };
+    return { error: getErrorMessage(e) };
   }
 }
 
