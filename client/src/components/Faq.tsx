@@ -3,6 +3,7 @@
 import { type Faq } from "@/lib/types";
 import Image from "next/image";
 import { useState } from "react";
+import { SectionHeader } from "./SectionHeader";
 
 /*
 How do NYC car auctions work?
@@ -78,7 +79,7 @@ export function Faq() {
   return (
     <section className="bg-randy-eggshell" id="faq">
       <div className="mx-auto max-w-7xl space-y-6 p-12">
-        <h2 className="text-2xl font-bold md:text-4xl">FAQ</h2>
+        <SectionHeader>FAQ</SectionHeader>
         {faqs.map((n, i) => (
           <div key={i} className="rounded-xl bg-white shadow-lg">
             <button

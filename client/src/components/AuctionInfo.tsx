@@ -6,14 +6,13 @@ import { Vehicles } from "./Vehicles";
 import { About } from "./About";
 
 type Props = {
-  lot: Lot;
+  lot?: Lot;
 };
 
 type Tab = "vehicles" | "about";
 
 export function AuctionInfo({ lot }: Props) {
   const [tab, setTab] = useState<Tab>("vehicles");
-  const { vehicles, about } = lot;
 
   return (
     <div>
@@ -29,8 +28,11 @@ export function AuctionInfo({ lot }: Props) {
           </button>
         ))}
       </div>
-      <Vehicles isOpen={tab === "vehicles"} vehicles={vehicles} />
-      <About isOpen={tab === "about"} about={about} />
+      <Vehicles
+        isOpen={tab === "vehicles"}
+        vehicles={lot ? lot.vehicles : undefined}
+      />
+      <About isOpen={tab === "about"} about={lot ? lot.about : undefined} />
     </div>
   );
 }

@@ -1,18 +1,21 @@
-import { Faq } from "@/components/Faq";
-import { Hero } from "@/components/Hero";
 import { Auctions } from "@/components/Auctions";
-import { Notice } from "@/components/Notice";
 import { Banner } from "@/components/Banner";
-import { NavBar } from "@/components/NavBar";
+import { Faq } from "@/components/Faq";
 import { Footer } from "@/components/Footer";
+import { Hero } from "@/components/Hero";
+import { NavBar } from "@/components/NavBar";
+import { Notice } from "@/components/Notice";
+import { getAuctions } from "@/lib/api";
 
-export default function Home() {
+export default async function Home() {
+  const { data, error } = await getAuctions();
+
   return (
     <>
-      <Banner />
+      <Banner lot={data && data.lots[0]} error={error} />
       <NavBar />
       <Hero />
-      <Auctions />
+      <Auctions lots={data} error={error} />
       <Faq />
       <Notice />
       <Footer />
