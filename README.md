@@ -5,6 +5,9 @@
 - [x] Server Side Error Handling
 - [x] Auth setup
 - [x] robots.txt
+- [x] Updated favicon.ico
+- [ ] opengraph-image .jpg, .png, .jpeg, .gif
+- [ ] opengraph-image.alt.txt
 - [ ] Data Repo and Data File Name Change
 - [ ] Update Environment Variables
 
