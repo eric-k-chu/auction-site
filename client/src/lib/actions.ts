@@ -20,9 +20,11 @@ export async function updateAuction(
   const pat = process.env.GITHUB_PAT;
   const email = process.env.GITHUB_EMAIL;
   const name = process.env.NAME;
+  const repo = process.env.GITHUB_REPO;
+  const path = process.env.GITHUB_AUCTION_PATH;
 
   try {
-    if (!username || !pat || !email || !name) {
+    if (!username || !pat || !email || !name || !repo || !path) {
       throw new Error(
         "Missing environment variables. Please check your Vercel dashboard.",
       );
@@ -38,11 +40,10 @@ export async function updateAuction(
       auth: pat,
     });
 
-    // TODO: CHANGE repo and path
     await octokit.request("PUT /repos/{owner}/{repo}/contents/{path}", {
       owner: username,
-      repo: "auction-site",
-      path: "client/src/data/auction.json",
+      repo: repo,
+      path: path,
       message: `Updating Auction Data: ${getCurrentDate()}`,
       committer: {
         name: name.split("_").join(" "),

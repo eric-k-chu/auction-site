@@ -9,16 +9,18 @@ import { decode64, getErrorMessage } from "./utils";
  * Pulls json file from the Github repository and decodes it into a Lots object along with sha of the json file.
  */
 export async function getAuctions(): Promise<Response200<Lots>> {
-  // TODO: CHANGE TEMP REPO NAME auction-site AND FILE NAME auction.json
-  const repo = "auction-site";
-  const dataFile = "client/src/data/auction.json";
+  const username = process.env.GITHUB_USERNAME;
+  const pat = process.env.GITHUB_PAT;
+  const repo = process.env.GITHUB_REPO;
+  const path = process.env.GITHUB_AUCTION_PATH;
+
   try {
     const res = await fetch(
-      `https://api.github.com/repos/${process.env.GITHUB_USERNAME}/${repo}/contents/${dataFile}`,
+      `https://api.github.com/repos/${username}/${repo}/contents/${path}`,
       {
         cache: "no-cache",
         headers: {
-          authorization: `token ${process.env.GITHUB_PAT}`,
+          authorization: `token ${pat}`,
         },
       },
     );
@@ -93,7 +95,7 @@ export async function readAuctions(): Promise<Response200<Lots>> {
 
     const lots = {
       lots: [lot],
-      sha: "test",
+      sha: "",
     };
 
     return {

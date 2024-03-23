@@ -6,6 +6,9 @@ declare global {
       GITHUB_EMAIL: string;
       NAME: string;
       SECRET_KEY: string;
+      GITHUB_REPO: string;
+      GITHUB_AUCTION_PATH: string;
+      GITHUB_ADMIN_PATH: string;
     }
   }
 }

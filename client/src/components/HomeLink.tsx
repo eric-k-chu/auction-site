@@ -1,6 +1,6 @@
 "use client";
 
-import { signOut } from "@/lib/auth";
+import { logOut } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 
 type Props = {
@@ -13,7 +13,7 @@ export function HomeLink({ children, isAuth }: Props) {
 
   function handleClick() {
     if (isAuth) {
-      signOut();
+      logOut();
     }
     router.push("/");
   }
