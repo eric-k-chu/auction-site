@@ -33,15 +33,19 @@ Randy wants a website where he can list the next car auction he is hosting. The 
 ```mermaid
 flowchart LR;
     User("User") --> Client("Web Client");
-    Client("Web Client") --> Api("Github API");
+
+    Admin("Admin") --> Server("Web Client");
+    Server("Web Client") --> Api("Github API");
     Api("Github API") --> Db("Github Repository");
-    Api("Github API") --> Client("Web Client");
+    Api("Github API") --> Server("Web Client");
     Db("Github Repository") --> Api("Github API");
 
     style User fill:#4586EF,stroke:#000000,color:#fff;
     style Client fill:#4586EF,stroke:#000000,color:#fff;
     style Api fill:#4586EF,stroke:#000000,color:#fff;
     style Db fill:#4586EF,stroke:#000000,color:#fff;
+    style Server fill:#4586EF,stroke:#000000,color:#fff;
+    style Admin fill:#4586EF,stroke:#000000,color:#fff;
 ```
 
 ### Web Client (Next.js / Vercel)
@@ -60,9 +64,13 @@ The auction data and admin credentials are stored in JSON files in a private Git
 
 ### 1. GET and POST auction data using Github API
 
-The auction data from a privatte repository will be fetched using [Github's REST API for repository contents](https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#get-repository-content).
+The both the auction data and the admin data will be present in this repository.
 
-The reason for this method is because of **cost**. Because the complexity of this website is very simple and the auction data is very small, we can use Github as a CMS (content management system) and avoid complications and expenses from using AWS (Amazon Web Services) or Google Cloud.
+For the end-user, the auction data will be read from this repository.
+
+For Randy or anyone who needs to update the data, the auction data will be fetched using [Github's REST API for repository contents](https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#get-repository-content) since we need the SHA of the auction file.
+
+The reason for using Github as our "database" is because of **cost**. Because the complexity of this website is very simple and the auction data is very small, we can use Github as a CMS (content management system) and avoid complications and expenses from using AWS (Amazon Web Services) or Google Cloud. For the most part, when a regular user looks at the website, the auction data is read from a json file. When an admin wants to update the auction data, we need to use Github's API to retrieve the hash (SHA) of the file so we can update it.
 
 Currently, Randy is not interested in scalability. The Marshal's office allows him to handle only a few auctions at a time (Only auctions that will occur in the current month will be assigned to him). The Github repository is more than capable of storing that data.
 
