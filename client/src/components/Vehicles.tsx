@@ -1,8 +1,8 @@
 "use client";
 
 import { Vehicle } from "@/lib/types";
-import Image from "next/image";
 import { useState } from "react";
+import { SvgChevronDown } from "./SvgChevronDown";
 
 type Props = {
   isOpen: boolean;
@@ -68,11 +68,7 @@ export function Vehicles({ isOpen, vehicles, displayAmount = 9 }: Props) {
         aria-label="click to expand"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <Image
-          src="arrow-down.svg"
-          alt="click to expand"
-          width={0}
-          height={0}
+        <SvgChevronDown
           className={`size-5 transition-transform duration-300 ease-in-out md:size-6 ${!isExpanded ? "rotate-0" : "rotate-180"}`}
         />
       </a>

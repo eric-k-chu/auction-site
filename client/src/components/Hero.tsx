@@ -20,13 +20,7 @@ export function Hero() {
             rel="noopener"
             className="flex w-fit items-center justify-center gap-1 rounded-xl bg-randy-orange px-16 py-4 font-semibold text-white"
           >
-            <Image
-              src="double-arrow-down.svg"
-              alt="downward arrow"
-              width={0}
-              height={0}
-              className="size-5 animate-pulse"
-            />
+            <DownArrowSvg />
             Next Auction
           </a>
         </div>
@@ -42,5 +36,29 @@ export function Hero() {
         </div>
       </div>
     </section>
+  );
+}
+
+function DownArrowSvg() {
+  return (
+    <svg
+      className="h-5 w-4 animate-pulse"
+      viewBox="0 0 15 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M7.50035 14.8407L13.8239 10.2417L14.9268 11.7581L7.50035 17.1591L0.0739373 11.7581L1.17676 10.2417L7.50035 14.8407Z"
+        fill="#fff"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M7.50035 8.84067L13.8239 4.2417L14.9268 5.75808L7.50035 11.1591L0.0739373 5.75808L1.17676 4.2417L7.50035 8.84067Z"
+        fill="#fff"
+      />
+    </svg>
   );
 }

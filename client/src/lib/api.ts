@@ -1,3 +1,4 @@
+import { readFile } from "fs/promises";
 import { GitFile, Lot, Lots, Response200 } from "./types";
 import { decode64, getErrorMessage } from "./utils";
 
@@ -8,9 +9,9 @@ import { decode64, getErrorMessage } from "./utils";
  * Pulls json file from the Github repository and decodes it into a Lots object along with sha of the json file.
  */
 export async function getAuctions(): Promise<Response200<Lots>> {
-  // TODO: CHANGE TEMP REPO NAME githubdb AND FILE NAME sample.json
-  const repo = "githubdb";
-  const dataFile = "sample.json";
+  // TODO: CHANGE TEMP REPO NAME auction-site AND FILE NAME auction.json
+  const repo = "auction-site";
+  const dataFile = "client/src/data/auction.json";
   try {
     const res = await fetch(
       `https://api.github.com/repos/${process.env.GITHUB_USERNAME}/${repo}/contents/${dataFile}`,
@@ -73,4 +74,36 @@ export async function getAuctionById(id: string): Promise<
     data: { lot, sha: data.sha },
     error: null,
   };
+}
+
+/*
+ * function: readAuctions
+ * return: promise containing the lots from the json file
+ *
+ * Gets the lots from the auction.json file
+ */
+export async function readAuctions(): Promise<Response200<Lots>> {
+  try {
+    const file = await readFile(
+      process.cwd() + "/src/data/auction.json",
+      "utf8",
+    );
+
+    const lot = (await JSON.parse(file)) as Lot;
+
+    const lots = {
+      lots: [lot],
+      sha: "test",
+    };
+
+    return {
+      data: lots,
+      error: null,
+    };
+  } catch (e) {
+    return {
+      data: null,
+      error: getErrorMessage(e),
+    };
+  }
 }

@@ -1,33 +1,9 @@
 "use client";
 
 import { type Faq } from "@/lib/types";
-import Image from "next/image";
 import { useState } from "react";
 import { SectionHeader } from "./SectionHeader";
-
-/*
-How do NYC car auctions work?
-Bidders pick the lot number of the vehicle they'd like to bid on. Vehicles are sold to the highest bidder, if there is a dispute between bidders, the process will begin again.
-
-What happens when you bid at an auction?
-The highest bidder must pay with cash at the final sale. The winner may need to tow the car from the New York car auction and can't be driven until it's properly registered with license plates.
-
-Do you pay if you lose a bid?
-No, only the winning bidder at a car auction will pay.
-
-What happens if you win a bid at a car auction but don't want it?
-Bidders are obligated to pay for the item once they've been the determined winner. Bidders should only participate in New York car auctions if they intend to purchase the vehicle.
-
-What happens if nobody bids?
-If no one bids on a car at the auction, it generally means the vehicle doesn't meet the minimum acceptable price or reserve set by the seller. In these cases, the auctioneer may pass the vehicle meaning it remains unsold and may be reentered into future auctions.
-
-If the car doesn't work can I get a better price?
-No, you purchase the vehicle in its current condition.
-
-How old do car auction bidders have to be?
-New York car auction bidders must be at least 18 years of age.
-
-*/
+import { SvgChevronDown } from "./SvgChevronDown";
 
 const faqs: Faq[] = [
   {
@@ -87,13 +63,7 @@ export function Faq() {
               type="button"
               onClick={() => setFaq(n)}
             >
-              <Image
-                src="arrow-down.svg"
-                alt="arrow down"
-                width={0}
-                height={0}
-                className="size-4 md:size-5"
-              />
+              <SvgChevronDown />
               <strong className="font-semibold">{n.title}</strong>
             </button>
             {currentFaq === n && (

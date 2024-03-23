@@ -5,6 +5,7 @@ import { JWTPayload, SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { GitFile, Response204, User } from "./types";
 import { decode64, getErrorMessage } from "./utils";
+import { readFile } from "fs/promises";
 
 /*
  * function: encrypt
@@ -113,4 +114,46 @@ export async function login(formData: FormData): Promise<Response204> {
   } catch (e) {
     return { error: getErrorMessage(e) };
   }
+}
+
+/*
+ * function: signIn
+ * param: formData, the FormData object from a <form> tag
+ *
+ * Signs in the user.
+ */
+export async function signIn(formData: FormData): Promise<Response204> {
+  try {
+    const file = await readFile(process.cwd() + "/src/data/admin.json", "utf8");
+    const credentials = (await JSON.parse(file)) as User;
+
+    const username = formData.get("username") as string;
+    const password = formData.get("password") as string;
+    const doesUsernameMatch = username === credentials.username;
+    const doesPasswordMatch = await bcrypt.compare(
+      password,
+      credentials.password,
+    );
+
+    if (!doesUsernameMatch || !doesPasswordMatch) {
+      return { error: "Incorrect username or password." };
+    }
+
+    await createSession(username);
+
+    return { error: null };
+  } catch (e) {
+    return {
+      error: getErrorMessage(e),
+    };
+  }
+}
+
+/*
+ * function: signOut
+ *
+ * Signs out the user.
+ */
+export async function signOut(): Promise<void> {
+  cookies().set("session", "", { expires: new Date(0) });
 }

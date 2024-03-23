@@ -1,13 +1,13 @@
 "use client";
 
-import { login } from "@/lib/auth";
+import { signIn } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { FormSubmitButton } from "./FormSubmitButton";
 import { HomeLink } from "./HomeLink";
 
 export function AdminLoginForm() {
   async function handleLogin(formData: FormData): Promise<void> {
-    const { error } = await login(formData);
+    const { error } = await signIn(formData);
 
     if (error !== null) {
       alert(error);

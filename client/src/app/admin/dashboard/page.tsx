@@ -1,10 +1,10 @@
 import { HomeLink } from "@/components/HomeLink";
-import { getAuctions } from "@/lib/api";
+import { readAuctions } from "@/lib/api";
 import { formatDate } from "@/lib/utils";
 import Link from "next/link";
 
 export default async function DashboardPage() {
-  const { data, error } = await getAuctions();
+  const { data, error } = await readAuctions();
 
   if (error !== null) {
     return (
@@ -17,7 +17,7 @@ export default async function DashboardPage() {
   return (
     <div className="flex min-h-screen flex-col items-center gap-y-8 bg-zinc-100 p-12">
       <div className="fixed left-4 top-4">
-        <HomeLink>Go Back home</HomeLink>
+        <HomeLink isAuth>Go Back home</HomeLink>
       </div>
       <h2 className="w-full max-w-3xl text-2xl font-bold md:text-4xl">
         Auction List

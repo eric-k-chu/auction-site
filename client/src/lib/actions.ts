@@ -41,8 +41,8 @@ export async function updateAuction(
     // TODO: CHANGE repo and path
     await octokit.request("PUT /repos/{owner}/{repo}/contents/{path}", {
       owner: username,
-      repo: "githubdb",
-      path: "sample.json",
+      repo: "auction-site",
+      path: "client/src/data/auction.json",
       message: `Updating Auction Data: ${getCurrentDate()}`,
       committer: {
         name: name.split("_").join(" "),

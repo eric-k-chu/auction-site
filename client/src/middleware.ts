@@ -6,7 +6,7 @@ export default async function middleware(req: NextRequest) {
   const session = await getSession();
 
   if (session === null) {
-    // If session  expires when the user is on /dashboard page, navigate them back to /admin for login. Otherwisee, navigate unauthorized users back to the homepage
+    // If session  expires when the user is on /dashboard page, navigate them back to /admin for login. Otherwise, navigate unauthorized users back to the homepage
     const absoluteURL =
       req.nextUrl.pathname === "/admin/dashboard"
         ? new URL("/admin", req.nextUrl.origin)

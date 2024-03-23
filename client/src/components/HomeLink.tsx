@@ -1,13 +1,27 @@
-import Link from "next/link";
+"use client";
+
+import { signOut } from "@/lib/auth";
+import { useRouter } from "next/navigation";
 
 type Props = {
   children: React.ReactNode;
+  isAuth?: boolean;
 };
 
-export function HomeLink({ children }: Props) {
+export function HomeLink({ children, isAuth }: Props) {
+  const router = useRouter();
+
+  function handleClick() {
+    if (isAuth) {
+      signOut();
+    }
+    router.push("/");
+  }
+
   return (
-    <Link
-      href="/"
+    <button
+      type="button"
+      onClick={handleClick}
       className="flex items-center gap-x-2 text-sm hover:underline md:text-base"
     >
       <svg
@@ -25,6 +39,6 @@ export function HomeLink({ children }: Props) {
         />
       </svg>
       {children}
-    </Link>
+    </button>
   );
 }

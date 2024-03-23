@@ -5,10 +5,10 @@ import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { NavBar } from "@/components/NavBar";
 import { Notice } from "@/components/Notice";
-import { getAuctions } from "@/lib/api";
+import { readAuctions } from "@/lib/api";
 
 export default async function Home() {
-  const { data, error } = await getAuctions();
+  const { data, error } = await readAuctions();
 
   return (
     <>
