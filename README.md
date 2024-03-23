@@ -1,16 +1,3 @@
-#### TODO:
-
-- [x] Date and Time input
-- [x] Add Deletion Confirmation
-- [x] Server Side Error Handling
-- [x] Auth setup
-- [x] robots.txt
-- [x] Updated favicon.ico
-- [x] opengraph-image .jpg, .png, .jpeg, .gif
-- [x] opengraph-image.alt.txt
-- [ ] Data Repo and Data File Name Change
-- [ ] Update Environment Variables
-
 ## NOTICE
 
 If you need to update the environment variables in your Vercel Dashboard, you have to redeploy the site again for it to update. You can simply edit this file and update the text below this paragraph by clicking on the `pencil icon` on the top right of this section.
