@@ -44,6 +44,10 @@ export function EditForm({ lot, sha }: { lot: Lot; sha: string }) {
     const { error } = await updateAuction(sha, getValues());
     if (error !== null) {
       alert(error);
+    } else {
+      alert(
+        "Success! The website will be updated shortly. You can view its progress in your Vercel Dashboard.",
+      );
     }
     // If the session expires, the middleware function will automatically move the user back to the home page
     redirect("/admin/dashboard");
